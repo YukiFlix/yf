@@ -1,0 +1,104 @@
+<title>YukiFlix | {{name}}</title>
+{% include 'menu.html' %}
+<main>
+    <section class="banner">
+        <div class="banner-card">
+            <img
+                src="{{ get_serie(name).image_H if 'http' in get_serie(name).image_H else '/static/img/' ~ get_serie(name).image_H }}"
+                class="banner-img"
+            />
+        </div>
+    </section>
+    <section class="animes">
+        <div class="filter-bar anime">
+            <h2 class="titre">{{ name }}</h2>
+        </div>
+        <section id="episode-container">
+            <p class="synopsis" id="serie">
+                {{get_serie(name).description}}
+            </p>
+            <div class="season-select">
+                <div class="list">
+                    <select id="season-select" onchange="onSeasonSelect()">
+			            {% for season in get_all_saisons(name) %}
+			                <option value="{{ season.nb }}">{{ season.nb }}</option>
+			            {% endfor %}
+                    </select>
+	                <button onclick="reverseOrder({{ season_nb }})" class="reverse-button">
+                        <i class="fas fa-arrows-alt-v"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        {% for season in get_all_saisons(name)%}
+        <div id="s{{ season.nb }}" class="animes-grid s">
+            {% for episode in get_all_episodes(name,season.nb) %}
+            <div class="anime-card s">
+                <a href="/watch/serie/{{name}}/season/{{season.nb}}/episode/{{episode.nb}}">
+                    <div class="card-body s">
+                        <h3 class="card-title">
+                            Episode {{episode.nb}} - {{episode.name}}
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </section>
+</main>
+<script>
+    // Cette fonction sera appelée chaque fois que vous sélectionner une saison dans le menu déroulant
+    function onSeasonSelect() {
+        const selectedSeason = document.getElementById("season-select").value;
+        const animename = document.getElementById("serie").textContent; // Récupérer le nom de l'animé à partir du contenu du paragraphe avec l'ID "serie"
+
+        const seasons = document.querySelectorAll(".animes-grid.s");
+
+        // Masquer toutes les saisons, sauf celle sélectionnée
+        seasons.forEach((season) => {
+            if (season.id === "s" + selectedSeason) {
+                season.style.display = "block";
+            } else {
+                season.style.display = "none";
+            }
+        });
+
+        // Enregistrez la saison sélectionnée dans le localStorage pour la conserver lors du rechargement de la page
+        localStorage.setItem(animename, selectedSeason);
+    }
+
+    // Appeler la fonction onSeasonSelect() une fois pour afficher les épisodes de la saison sélectionnée ou de la première saison par défaut.
+    // si une saison sélectionnée a été enregistrée dans le localStorage, restaurer cette sélection.
+    const animename = document.getElementById("serie").textContent; // Récupérer le nom de l'animé à partir du contenu du paragraphe avec l'ID "serie"
+    const savedSeason = localStorage.getItem(animename);
+    if (savedSeason) {
+        document.getElementById("season-select").value = savedSeason;
+    }
+    onSeasonSelect(); // Afficher les épisodes de la saison sélectionnée ou de la première saison par défaut.
+
+    function reverseOrder() {
+        const selectedSeason = document.getElementById("season-select").value;
+        const seasonContainer = document.getElementById("s" + selectedSeason);
+        const episodes = Array.from(
+            seasonContainer.getElementsByClassName("anime-card s")
+        );
+        const reverseButton = document.querySelector(".reverse-button i");
+
+        reverseButton.classList.add("rotate-animation");
+        reverseButton.addEventListener(
+            "animationend",
+            function () {
+                reverseButton.classList.remove("rotate-animation");
+            },
+            { once: true }
+        );
+
+        episodes.reverse();
+        episodes.forEach((episode) => {
+            seasonContainer.appendChild(episode);
+        });
+    }
+</script>
+
+{% include 'footer.html' %}
