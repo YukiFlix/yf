@@ -1,0 +1,32 @@
+<title>YukiFlix - Profil</title>
+{% include "menu.html" %}
+<main>
+    <section class="banner">
+        <div class="banner-card jour">
+            <img
+                src="https://i.ibb.co/71BbqLL/banniere.webp"
+                class="banner-img"
+                alt="Banner Image"
+            />
+        </div>
+    </section>
+    <section class="animes" id="section1">
+        <div class="filter-bar">
+            <h2 class="titre">Profil</h2>
+        </div>
+        <a href="/logout" class="navbar-logout">
+            <span>Logout</span>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+        <div class="popup">
+            <div class="profile">
+                <h2 class="user">{{ account.pseudo }}</h2>
+                <ion-icon name="bookmark"></ion-icon>
+                <span>Favoris (bientôt)</span>
+            </div>
+        </div>
+    </section>
+    <section class="animes">
+    </section>
+</main>
+{% include "footer.html" %}

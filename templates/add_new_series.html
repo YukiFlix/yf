@@ -1,0 +1,33 @@
+<title>YukiFlix | Ajouter</title>{% include 'menu.html' %}
+<form
+    class="add"
+    action="/add/series/new/"
+    method="post"
+    enctype="multipart/form-data"
+>
+    <p>Nom de la Série ?</p>
+    <input name="name_serie" />
+    <p>Image Verticale ?</p>
+    <input type="file" accept=".webp" name="image_V" />
+    <p>Image Horizontale ?</p>
+    <input type="file" accept=".webp" name="image_H" />
+    <p>Titre de l'épisode 1 ?</p>
+    <input type="text" name="tt_episode" />
+    <p>Date d'ajout de l'épisode 1 ?</p>
+    <input type="date" name="dt_episode" />
+    <p>Lien de l'épisode 1 en VF ?</p>
+    <input type="url" name="link_serie_fr" />
+    <p>Lien de l'épisode 1 en VOSTFR ?</p>
+    <input type="url" name="link_serie_vostfr" />
+    <p>Note de la Série (IMDB) ?</p>
+    <input type="text" name="star" />
+    <p>Description ?</p>
+    <input name="description_serie" />
+    <p>Mot de passe ?</p>
+    <input type="password" name="password" /><button type="submit">
+        Ajouter</button
+    >{% if error %}
+    <p>{{error}}</p>
+    {% endif %}
+</form>
+{% include 'footer.html' %}

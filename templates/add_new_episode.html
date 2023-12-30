@@ -1,0 +1,41 @@
+<title>YukiFlix | Ajouter</title>{% include 'menu.html' %}
+<form class="add" method="post" enctype="multipart/form-data">
+    <p>Quelle Série ?</p>
+    <input
+        type="text"
+        id="serie"
+        name="serie"
+        placeholder="Choisir la série pour ajouter l'épisode"
+        readonly="readonly"
+    />
+    <section id="List" style="display: none">
+        {% for x in name_series %}
+            <li>{{x}}</li>
+        {% endfor %}
+    </section>
+    <script type="text/javascript">
+        var selectedValue = "";
+        window.addEventListener("DOMContentLoaded", function () {
+            var t = document.getElementById("serie"),
+                n = document.getElementById("List");
+            t.addEventListener("click", function () {
+                n.style.display = "none" === n.style.display ? "block" : "none";
+            });
+            for (var e = n.getElementsByTagName("li"), l = 0; l < e.length; l++)
+                e[l].addEventListener("click", function () {
+                    (selectedValue = this.textContent),
+                        console.log(selectedValue),
+                        (t.value = selectedValue),
+                        (n.style.display = "none"),
+                        sendData();
+                });
+            document.addEventListener("click", function (e) {
+                t.contains(e.target) || n.contains(e.target);
+            });
+        });
+    </script>
+    <button type="submit">Suivant</button>{% if error %}
+    <p>{{error}}</p>
+    {% endif %}
+</form>
+{% include 'footer.html' %}

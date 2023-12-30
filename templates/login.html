@@ -1,0 +1,32 @@
+<title>YukiFlix - Connexion</title>{% include "menu.html" %}
+<main>
+  <section class="banner">
+    <div class="banner-card">
+      <img src="https://i.ibb.co/71BbqLL/banniere.webp" class="banner-img" alt="Banner Image" />
+    </div>
+  </section>
+  <section class="animes" id="section2">
+    <div class="filter-bar">
+      <h2 class="titre">Connexion</h2>
+    </div>
+    <p class="synopsis">
+      En vous connectant, vous pourrez ajouter des animés à vos favoris, vous permettant ainsi de
+      sauvegarder les films ou séries que vous souhaitez regarder ultérieurement.
+    </p>
+    <div class="popup">
+      <h1>Se Connecter</h1>
+      <div class="sign-input">
+        {% if error_login %}<p>{{error_login}}</p>{% endif %}
+        <form method="post" enctype="multipart/form-data">
+          <input type="text" placeholder="Username" name="username" minlength="4" maxlength="26" required />
+          <input type="password" placeholder="Password" name="password" minlength="8" maxlength="26" required />
+          <button type="submit">Connexion</button>
+          <div class="switch">
+            <span>Pas de compte ?</span><a href="/register">S'inscrire</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+{% include "footer.html" %}

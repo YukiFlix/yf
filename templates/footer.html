@@ -1,0 +1,47 @@
+<footer>
+  <div class="footer-copyright">
+    <div class="copyright">
+      <p>&copy; {{ g.year }} - YukiFlix</p>
+    </div>
+    <p>Créé avec ❤️ par Honekichi</p>
+    <div class="social-links">
+      <a href="https://twitter.com/YukiFlix" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+      <a href="https://instagram.com/YukiFlix" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://youtube.com/@YukiFlix" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      <a href="mailto:yukiflixoff@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+  {% for js_file in [ 'main.js', 'filter-options.js', 'scroll_button.js' ]
+  %}
+  <script type="text/javascript" src="{{ url_for('static', filename='JS/' ~ js_file) }}"></script>
+  {% endfor %}
+  <script type="text/javascript" src="{{ url_for('static', filename='JS/scroll_button.js') }}"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var imagesToPreload = document.querySelectorAll(".card-img");
+
+        for (var i = 0; i < imagesToPreload.length; i++) {
+            var image = new Image();
+            image.src = imagesToPreload[i].getAttribute("src");
+        }
+    });
+  </script>
+  <script>
+    var typed = '';
+
+    document.addEventListener('keydown', function(event) {
+      typed += event.key.toLowerCase();
+      if (typed === 'yukiflix') {
+        window.open('https://www.youtube.com/watch?v=2FJlbPqka3M', '_blank');
+        typed = '';
+      }
+    });
+  </script>
+
+</footer>
+</div>
+</body>
+
+</html>

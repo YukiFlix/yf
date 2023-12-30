@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/8NWd2Vx/Yuki-Flix-144x144.webp" />
+    <meta name="theme-color" content="#131720" />
+    <meta property="og:image" content="https://i.ibb.co/DzFj1xH/yukiflix.webp" />
+    <meta name="description"
+          content="Regardez vos animés préférés en streaming gratuitement et sans publicités sur YukiFlix grâce à Honekichi !" />
+    <link rel="icon" href="https://i.ibb.co/DzFj1xH/yukiflix.webp" />
+    <meta name="keywords"
+          content="YukiFlix, YukiFlix, yukiflixofficiel, bitlyyukiflixofficiel, yukiflixgithub, yukiflixfr, yukiflix animés, yukiflix liste, yukiflix Honekichi, Honekichi" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHJ1KH7MY2"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="google-site-verification" content="bj1-ZztJU41SUizxlVOcMRtcWIpGqdphA5V0o1CSl08" />
+    {% for css_file in ['main.css', 'media_query.css', 'reset.css'] %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/' ~ css_file) }}" />
+    {% endfor %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900"
+          rel="stylesheet" />
+          <script src="https://app.embed.im/snow.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <button class="navbar-menu-btn" title="navbar-menu-btn">
+                    <span class="one"></span><span class="two"></span><span class="three"></span></button>
+                <div title="YukiFlix" class="yukiflix">
+                    <a href="/" class="logo">Yuki</a>
+                    <a href="/" class="logo">Flix</a>
+                </div>
+                <nav class="navbar-menu">
+                    <ul class="navbar-nav">
+                        <li><a href="/" class="navbar-link">Accueil</a></li>
+                        <li><a href="/faq" class="navbar-link" target="_self">FAQ</a></li>
+                        <li>
+                            <a href="https://dsc.gg/yukiflix" class="navbar-link" target="_blank">Discord</a>
+                        </li>
+                        <li>
+                            <a href="/catalog" class="navbar-link" target="_self">Catalogue</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="navbar-actions">
+
+                    <form class="navbar-form" id="filterForm" action="/search" method="get">
+                        <input type="text" id="filterInput" name="q" autocomplete="off" placeholder="Rechercher..."
+                               class="navbar-form-search" />
+                        <button type="submit" class="navbar-form-btn"><ion-icon
+                                      name="search-outline"></ion-icon></button>
+                        <icon class="navbar-form-close"><ion-icon name="close-circle-outline"></ion-icon></icon>
+                    </form>
+                    <icon class="navbar-search-btn">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </icon>
+
+                    {% if account %}
+                        <a href="/profile" class="navbar-profile" title="{{ account.pseudo }}">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </a>
+                    {% else %}
+                        <a href="/login" class="navbar-profile">
+                            <span>Connexion</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        </a>
+                    {% endif %}
+
+                </div>
+            </div>
+            <button id="scrollBtn" style="display: none;">↑</button>
+        </header>

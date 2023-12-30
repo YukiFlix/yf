@@ -1,0 +1,360 @@
+<main>
+    <section class="banner">
+        <div class="carousel-container">
+          <div class="carousel">
+              <div class="banner-card">
+                <img src="https://www.themoviedb.org/t/p/original/z4QSEdTHzxdjc7k5QuxKg8Iwegv.jpg" class="banner-img" alt="Banner Image" />
+                <div class="card-content">
+                    <div class="card-info">
+
+                      <div class="genre">
+                        <i class="fa-solid fa-film"></i>
+                        <span>Isekai/Dark Fantasy/Comédie</span>
+                      </div>
+
+                      <div class="year">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>2022</span>
+                      </div>
+
+                      <div class="duration">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>En cours</span>
+                      </div>
+
+                      <div class="quality">4K</div>
+
+                    </div>
+
+                    <h2 class="card-title">The Eminence In Shadow</h2>
+                </div>
+            </div>
+            <div class="banner-card">
+                <img src="https://www.themoviedb.org/t/p/original/9CsTtHlvErQ93jvIWIjs06G0Abe.jpg" class="banner-img" alt="Banner Image" />
+                <div class="card-content">
+                    <div class="card-info">
+
+                      <div class="genre">
+                        <i class="fa-solid fa-film"></i>
+                        <span>Action/Dark Fantasy</span>
+                      </div>
+
+                      <div class="year">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>2020</span>
+                      </div>
+
+                      <div class="duration">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>En cours</span>
+                      </div>
+
+                      <div class="quality">4K</div>
+
+                    </div>
+
+                    <h2 class="card-title">Jujutsu Kaisen</h2>
+                </div>
+            </div>
+            <div class="banner-card">
+                <img src="https://www.themoviedb.org/t/p/original/8Tv140K71PVsiU5z0vRNrgZpKAM.jpg" class="banner-img" alt="Banner Image" />
+                <div class="card-content">
+                    <div class="card-info">
+
+                      <div class="genre">
+                        <i class="fa-solid fa-film"></i>
+                        <span>Action/Dark Fantasy</span>
+                      </div>
+
+                      <div class="year">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>2023</span>
+                      </div>
+
+                      <div class="duration">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>En cours</span>
+                      </div>
+
+                      <div class="quality">4K</div>
+
+                    </div>
+
+                    <h2 class="card-title">Ragna Crimson</h2>
+                </div>
+            </div>
+          </div>
+          <ul class="carousel-btns">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+    </section>
+    <section class="animes scrollable">
+        <div class="filter-bar" id="popular">
+            <h2 class="titre">Populaires</h2>
+        </div>
+        <div class="animes-grid-wrapper" id="popular">
+            <div class="slide-btn left">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="animes-grid" id="animes-grid-all">
+                {% for anime in top %}
+                <div class="anime-card" title="{{ anime.name }}">
+                    <a
+                       href="/watch/{{ 'movie' if 'Movie' in anime.__class__.__name__ else 'serie' }}/count/{{ anime.name }}">
+                        <div class="card-head" title="{{ anime.name }}">
+                            <img src="{{ anime.image_V if 'http' in anime.image_V else '/static/img/' ~ anime.image_V }}"
+                                 class="card-img" alt="{{ anime.name }}" />
+                        <div class="card-overlay">
+                            <div class="views">
+                                <i class="fa-solid fa-eye"></i><span>{{ anime.view }}</span>
+                            </div>
+                            <div class="rating" data-star="{{ anime.stars }}">
+                                <i class="fa-solid fa-star"></i><span>{{ anime.stars }}</span>
+                            </div>
+                                <div class="play">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ anime.name }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="slide-btn right">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
+    <section class="animes scrollable">
+        <div class="filter-bar" id="series">
+            <h2 class="titre">Séries</h2>
+        </div>
+        <div class="animes-grid-wrapper">
+            <div class="slide-btn left">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="animes-grid" id="animes-grid-series">
+                {% for title, serie in zip(get_all_series_names()[:18], get_all_series()[:18]) %}
+                <div class="anime-card" title="{{ title }}">
+                    <a href="/watch/serie/count/{{ title }}">
+                        <div class="card-head" title="{{ title }}">
+                            <img src="{{ serie.image_V if 'http' in serie.image_V else '/static/img/' ~ serie.image_V }}"
+                                 class="card-img" alt="{{ title }}" />
+                        <div class="card-overlay">
+                            <div class="views">
+                                <i class="fa-solid fa-eye"></i><span>{{ get_counter(title).count }}</span>
+                            </div>
+                            <div class="rating" data-star="{{ serie.stars }}">
+                                <i class="fa-solid fa-star"></i><span>{{ serie.stars }}</span>
+                            </div>
+                                <div class="play">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ title }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="slide-btn right">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
+    <section class="animes scrollable" id="section2">
+        <div class="filter-bar" id="movies">
+            <h2 class="titre">Films</h2>
+        </div>
+        <div class="animes-grid-wrapper">
+            <div class="slide-btn left">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="animes-grid" id="animes-grid-movies">
+                {% for movie in get_all_movies_with_limit(0,18) %}
+                <div class="anime-card" title="{{ movie.name }}">
+                    <a href='/watch/movie/count/{{ movie.name }}'>
+                        <div class="card-head" title="{{ movie.name }}">
+                            <img src="{{ movie.image_V if 'http' in movie.image_V else '/static/img/' ~ movie.image_V }}"
+                                 class="card-img" alt="{{ movie.name }}" />
+                        <div class="card-overlay">
+                            <div class="views">
+                                <i class="fa-solid fa-eye"></i><span>{{ get_counter(movie.name).count }}</span>
+                            </div>
+                            <div class="rating" data-star="{{ movie.stars }}">
+                                <i class="fa-solid fa-star"></i><span>{{ movie.stars }}</span>
+                            </div>
+                                <div class="play">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ movie.name }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="slide-btn right">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="category">
+        <div class="filter-bar">
+            <h2 class="titre">Genres</h2>
+        </div>
+
+        <div class="category-grid">
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://wallpapercave.com/wp/wp4058014.jpg"  class="card-img">
+            <div class="name">Action</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://vistapointe.net/images/gintama-4.jpg"  class="card-img">
+            <div class="name">Comédie</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://www.nawpic.com/media/2020/berserk-nawpic-3-e1606124266721.jpg"  class="card-img">
+            <div class="name">Fantaisie</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://images3.alphacoders.com/783/thumb-1920-783646.jpg"  class="card-img">
+            <div class="name">Horreur</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://images5.alphacoders.com/606/606284.jpg"  class="card-img">
+            <div class="name">Aventure</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://animeclipsraw.fr/storage/2023/03/Screenshot_436-1024x577.png"  class="card-img">
+            <div class="name">Isekai</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://otakukart.com/wp-content/uploads/2021/03/Featured-Near.jpg"  class="card-img">
+            <div class="name">Crime</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+          <a href="/">
+          <div class="category-card">
+            <img src="https://wallpaperaccess.com/full/178518.jpg"  class="card-img">
+            <div class="name">Sci-Fi</div>
+            <div class="total">0</div>
+          </div>
+          </a>
+
+        </div>
+
+      </section>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const scrollButtons = document.querySelectorAll(".slide-btn");
+
+        scrollButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const direction = button.classList.contains("left")
+                    ? "left"
+                    : "right";
+                const container = button
+                    .closest(".animes-grid-wrapper")
+                    .querySelector(".animes-grid");
+                const scrollAmount = 300;
+
+                if (direction === "left") {
+                    container.scrollLeft -= scrollAmount;
+                } else if (direction === "right") {
+                    container.scrollLeft += scrollAmount;
+                }
+            });
+        });
+    });
+</script>
+<script>
+    // Script pour défilement bannière
+    const carousel = document.querySelector('.carousel');
+    const carouselContainer = document.querySelector('.carousel-container');
+    const carouselBtnsContainer = document.querySelector('.carousel-btns');
+    let isHovered = false;
+    let intervalId;
+    let currentIndex = 0;
+
+    const carouselItems = document.querySelectorAll('.banner-card');
+    const carouselBtns = document.querySelectorAll('.carousel-btns li');
+
+    const updateCarousel = () => {
+      carousel.style.transform = `translateX(${-currentIndex * 100}%)`;
+      carouselBtns.forEach((btn, index) => {
+        btn.classList.toggle('active', index === currentIndex);
+      });
+    };
+
+    const pauseCarousel = () => clearInterval(intervalId);
+    const startCarousel = () => intervalId = setInterval(nextSlide, 3000);
+    const handleBtnClick = index => {
+      currentIndex = index;
+      updateCarousel();
+    };
+    const nextSlide = () => {
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      updateCarousel();
+    };
+
+    carouselContainer.addEventListener('mouseover', () => {
+      isHovered = true;
+      pauseCarousel();
+    });
+
+    carouselContainer.addEventListener('mouseout', () => {
+      isHovered = false;
+      if (!isHovered) {
+        startCarousel();
+      }
+    });
+
+    carouselBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => handleBtnClick(index));
+    });
+
+    startCarousel();
+    updateCarousel();
+</script>

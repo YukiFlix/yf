@@ -1,0 +1,19 @@
+<title>YukiFlix | Ajouter</title>{% include 'menu.html' %}
+<form class="add" method="post" enctype="multipart/form-data">
+    <p>Saison combien ?</p>
+    <input type="text" name="nb_saison" />
+    <p>Titre Episode 1 ?</p>
+    <input type="text" name="tt_episode" />
+    <p>VOSTFR Episode 1?</p>
+    <input type="url" name="link_vostfr" />
+    <p>VF Episode 1 ?</p>
+    <input type="url" name="link_fr" />
+    <p>Mot de passe ?</p>
+    <input type="password" name="password" /><button type="submit">
+        Ajouter
+    </button>
+    {% if error %}
+    <p>{{error}}</p>
+    {% endif %}
+</form>
+{% include 'footer.html' %}

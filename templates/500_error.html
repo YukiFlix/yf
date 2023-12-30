@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YukiFlix | Erreur 500</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/8NWd2Vx/Yuki-Flix-144x144.webp" />
+    <meta name="theme-color" content="#131720" />
+    <meta property="og:image" content="https://i.ibb.co/DzFj1xH/yukiflix.webp" />
+    <link rel="icon" href="https://i.ibb.co/DzFj1xH/yukiflix.webp" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% for css_file in ['main.css', 'media_query.css', 'reset.css'] %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/' ~ css_file) }}" />
+    {% endfor %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900"
+          rel="stylesheet" />
+</head>
+
+<body>
+    <div class="error">
+        <h1>
+            5<span><i class="fa-solid fa-server fa-fade"></i></span>0
+        </h1>
+        <p>
+            Oups ! Il semble que nous ayons rencontré une erreur inattendue. 😅
+        </p>
+    </div>
+</body>
+
+</html>

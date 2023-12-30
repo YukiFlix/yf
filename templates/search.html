@@ -1,0 +1,38 @@
+<title>{{ title }}</title>{% include 'menu.html' %}
+
+<main>
+    <section class="animes">
+        {% for category, results in search_results.items() %}
+            <div class="filter-bar">
+                <h2 class="titre">{{ category }}</h2>
+            </div>
+            <div class="animes-grid">
+                {% for content in results %}
+                    <div class="anime-card" title="{{ content.name }}">
+                    <a
+                       href="/watch/{{ 'movie' if 'Movie' in anime.__class__.__name__ else 'serie' }}/count/{{ anime.name }}">
+                        <div class="card-head" title="{{ content.name }}">
+                            <img src="/static/img/{{ content.image_V }}" class="card-img" alt="{{ content.name }}" />
+                            <div class="card-overlay">
+                                <div class="views">
+                                    <i class="fa-solid fa-eye"></i><span>{{ content.views }}</span>
+                                </div>
+                                <div class="rating" data-star="{{ content.stars }}">
+                                    <i class="fa-solid fa-star"></i><span>{{ content.stars }}</span>
+                                </div>
+                                <div class="play">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ content.name }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </section>
+</main>
+{% include 'footer.html' %}
